@@ -52,6 +52,7 @@ class _ExpenseListPageState extends State<ExpenseList> {
                   padding: const EdgeInsets.all(15.0),
                   child: Row(                 // cardの中身をRowで設定
                       children: <Widget>[               // Rowの中身を設定
+                        Text('￥',style: const TextStyle(fontSize: 30),),
                         Text(expense.expense_amount_including_tax.toString() ,style: const TextStyle(fontSize: 30),),     // catのnameを表示
                       ]
                   ),

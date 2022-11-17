@@ -32,6 +32,7 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
   String? incomeItem = '収入カテゴリの選択';
   dynamic dateTime;
   dynamic dateFormat;
+  dynamic nowdate = DateTime.now();
 
 // Stateのサブクラスを作成し、initStateをオーバーライドすると、wedgit作成時に処理を動かすことができる。
 // ここでは、各項目の初期値を設定する
@@ -52,7 +53,7 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
     _category_selected = widget.expenses?.expense_category_code ?? '支出カテゴリの選択';
     _payment_selected = widget.expenses?.payment_method_id ?? '支払い方法を選択';
     dateTime = DateTime.now();
-    dateFormat = DateFormat("yyyy年MM月dd日").format(dateTime);
+    dateFormat = DateFormat("yyyy年MM月dd日").format(expense_datetime);
   }
 
   void _onChangedCategory(String? value) {
@@ -80,9 +81,9 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
     final DateTime? datePicked = await showDatePicker(
         locale: const Locale("ja"),
         context: context,
-        initialDate: dateTime,
-        firstDate: DateTime(2003  ),
-        lastDate: DateTime(2023));
+        initialDate: expense_datetime,
+        firstDate: DateTime(2020),
+        lastDate: DateTime(nowdate.year + 1));
     if (datePicked != null && datePicked != dateTime) {
       setState(() {
         dateFormat = DateFormat("yyyy年MM月dd日").format(datePicked);

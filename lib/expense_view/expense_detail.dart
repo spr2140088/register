@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../model/expense_db_helper.dart';
 import '../model/expenses.dart';
 import 'expense_detail_edit.dart';
@@ -84,7 +85,7 @@ class _ExpenseDetailState extends State<ExpenseDetail> {
                     flex: dataExpandedFlex,
                     child: Container(                           // catsテーブルのnameの表示を設定
                       padding: const EdgeInsets.all(5.0),
-                      child: Text(expenses.expense_datetime.toString()),
+                      child: Text(DateFormat("yyyy年MM月dd日").format(expenses.expense_datetime)),
                     ),
                   ),
                 ],),
