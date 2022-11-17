@@ -2,7 +2,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'expenses.dart';
 
-const String columnExpenseId = '_expenseid';
+const String columnExpenseId = '_expense_id';
 const String columnExpenseCategoryCode = 'expense_category_code';
 const String columnExpenseGenreCode = 'expense_genre_code';
 const String columnPaymentMethodId = 'payment_method_id';
@@ -56,7 +56,7 @@ class ExpenseDbHelper {
     //catsテーブルをcreateする
     await database.execute('''
       CREATE TABLE expenses(
-        _expenseid INTEGER PRIMARY KEY AUTOINCREMENT,
+        _expense_id INTEGER PRIMARY KEY AUTOINCREMENT,
         expense_category_code TEXT,
         expense_genre_code TEXT,
         payment_method_id TEXT,

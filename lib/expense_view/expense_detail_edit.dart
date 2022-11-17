@@ -265,7 +265,6 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
                       ),
 
                       //ここから収入
-        /*
                             Container(
                               child: Column(
                                 children: <Widget>[
@@ -372,7 +371,6 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
                                 ],
                               ),
                             ),
-                      */
                     ],
                   ),
                 ),
@@ -409,6 +407,7 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
     await ExpenseDbHelper.expenseinstance.expenseupdate(expense);        // catの内容で更新する
   }
 
+  int idCount = 0;
 
   // 追加処理の呼び出し
   Future createExpense() async {
@@ -416,6 +415,8 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
       expense_category_code: expense_category_code,
       expense_genre_code: expense_genre_code,
       payment_method_id: payment_method_id,
+      expense_total_money: 0,
+      expense_consumption_tax: 0,
       expense_amount_including_tax: expense_amount_including_tax,
       expense_datetime: expense_datetime,
       expense_memo: expense_memo,

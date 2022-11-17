@@ -104,21 +104,6 @@ class _ExpenseDetailState extends State<ExpenseDetail> {
                   ),
                 ],),
                 Row(children: [
-                  const Expanded(                              // 見出しの設定（性別)
-                    flex: textExpandedFlex,
-                    child: Text('消費税',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Expanded(
-                    flex: dataExpandedFlex,
-                    child: Container(                          // catsテーブルのgenderの表示を設定
-                      padding: const EdgeInsets.all(5.0),
-                      child: Text(expenses.expense_consumption_tax.toString()),
-                    ),
-                  ),
-                ],),
-                Row(children: [
                   const Expanded(           // 「誕生日」の見出し行の設定
                     flex: textExpandedFlex,
                     child: Text('カテゴリー',
@@ -151,7 +136,7 @@ class _ExpenseDetailState extends State<ExpenseDetail> {
                 Row(children: [
                   const Expanded(     // 「メモ」の見出し行の設定
                       flex: textExpandedFlex,
-                      child: Text('方法',
+                      child: Text('支払い方法',
                         textAlign: TextAlign.center,
                       )
                   ),

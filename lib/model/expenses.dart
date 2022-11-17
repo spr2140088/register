@@ -1,14 +1,14 @@
 import 'package:e_i_register/model/expense_db_helper.dart';
 import 'package:intl/intl.dart';
 
-// catsテーブルの定義
+// Expensesテーブルの定義
 class Expenses {
   int? expense_id;
   String expense_category_code;
   String expense_genre_code;
   String payment_method_id;
-  int? expense_total_money;
-  int? expense_consumption_tax;
+  int expense_total_money;
+  int expense_consumption_tax;
   int expense_amount_including_tax;
   DateTime expense_datetime;
   String expense_memo;
@@ -20,8 +20,8 @@ class Expenses {
     required this.expense_category_code,
     required this.expense_genre_code,
     required this.payment_method_id,
-    this.expense_total_money,
-    this.expense_consumption_tax,
+    required this.expense_total_money,
+    required this.expense_consumption_tax,
     required this.expense_amount_including_tax,
     required this.expense_datetime,
     required this.expense_memo,
@@ -75,6 +75,9 @@ class Expenses {
     columnExpenseCategoryCode: expense_category_code,
     columnExpenseGenreCode: expense_genre_code,
     columnPaymentMethodId: payment_method_id,
+    columnExpenseTotalMoney: expense_total_money,
+    columnExpenseConsumptionTax: expense_consumption_tax,
+    columnExpenseAmountIncludingTax: expense_amount_including_tax,
     columnExpenseDateTime: DateFormat('yyyy-MM-dd HH:mm:ss').format(expense_datetime),
     columnExpenseMemo: expense_memo,
     columnExpenseCreatedAt: DateFormat('yyyy-MM-dd HH:mm:ss').format(expense_created_at),

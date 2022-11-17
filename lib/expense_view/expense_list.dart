@@ -52,16 +52,6 @@ class _ExpenseListPageState extends State<ExpenseList> {
                   padding: const EdgeInsets.all(15.0),
                   child: Row(                 // cardの中身をRowで設定
                       children: <Widget>[               // Rowの中身を設定
-                        Container(                      // アイコンを表示
-                            width: 80,height: 80,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,     // 丸にする
-                                image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: AssetImage('assets/icon/dora.png')
-                                )
-                            )
-                        ),
                         Text(expense.expense_amount_including_tax.toString() ,style: const TextStyle(fontSize: 30),),     // catのnameを表示
                       ]
                   ),
