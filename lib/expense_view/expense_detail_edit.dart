@@ -75,13 +75,32 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
       expense_genre_code = which;
     });
   }
+/*
+//ラジオボタン切り替えたら表示を変えたいよ
+  String _type = '選択してないときの初期値？';
+  void _handleRadio(String e) => setState(() {_type = e;});
+      Te  _changeIcon(Strimg e) {
+      IconData Icon = null;
+      switch(e) {
+        case '':
+          break;
+        case '':
+          break:
+        default:
+    }
+    return Icon;
+  }
+
+ */
+
+
 
   _datePicker(BuildContext context) async {
     final DateTime? datePicked = await showDatePicker(
         locale: const Locale("ja"),
         context: context,
         initialDate: dateTime,
-        firstDate: DateTime(2003  ),
+        firstDate: DateTime(2003),
         lastDate: DateTime(2023));
     if (datePicked != null && datePicked != dateTime) {
       setState(() {
@@ -132,7 +151,7 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
                 const SizedBox(height: 20,),
 
                 Container(
-                  height: 480,
+                  height: 560,
                   child: TabBarView(
                     children: <Widget>[
                       Container(
@@ -145,16 +164,38 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
                                   Radio(
                                     value: '通常',
                                     groupValue: which,
-                                    onChanged: _onChangedGenre
+                                    onChanged: _onChangedGenre,
                                   ),
                                   const Text('通常', style: TextStyle(fontSize: 25),),
                                   Radio(
                                     value: '後払い',
                                     groupValue: which,
-                                    onChanged: _onChangedGenre
+                                    onChanged: _onChangedGenre,
                                   ),
                                   const Text('後払い', style: TextStyle(fontSize: 25),),
                                 ],
+                              ),
+                            ),
+                            Container(
+                              child: const Align(
+                                alignment: Alignment(-0.7,0),
+                                child: Text('品目', style: TextStyle(fontSize: 25),),
+                              ),
+                            ),
+                            Container(
+                              width: 280,
+                              child: TextFormField(
+                                //initialValue: expense_memo,
+                                decoration: const InputDecoration(
+                                    hintText: '品目を入力してください',
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(width: 2),
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      vertical: 10,
+                                    )
+                                ),
+                                //onChanged: (expense_item_name) => setState(() => this.expense_item_name = expense_item_name),
                               ),
                             ),
                             Container(
