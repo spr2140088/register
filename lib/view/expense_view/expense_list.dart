@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../model/expense_model/expense_db_helper.dart';
 import '../../model/expense_model/expenses.dart';
-import 'expense_detail.dart';
-import 'expense_detail_edit.dart';
 
 // catテーブルの内容全件を一覧表示するクラス
 class ExpenseList extends StatefulWidget {
