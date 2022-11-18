@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../model/expense_db_helper.dart';
-import '../model/expenses.dart';
+import '../../model/expense_model/expense_db_helper.dart';
+import '../../model/expense_model/expenses.dart';
 import 'expense_detail.dart';
 import 'expense_detail_edit.dart';
 

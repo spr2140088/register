@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../model/expense_db_helper.dart';
-import '../model/expenses.dart';
+import '../../model/expense_model/expense_db_helper.dart';
+import '../../model/expense_model/expenses.dart';
+import '../../model/income_model/income_db_helper.dart';
+import '../../model/income_model/incomes.dart';
 
 class ExpenseDetailEdit extends StatefulWidget {
   final Expenses? expenses;
@@ -34,6 +36,8 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
   dynamic dateFormat;
   dynamic nowdate = DateTime.now();
 
+
+
 // Stateのサブクラスを作成し、initStateをオーバーライドすると、wedgit作成時に処理を動かすことができる。
 // ここでは、各項目の初期値を設定する
   @override
@@ -54,7 +58,10 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
     _payment_selected = widget.expenses?.payment_method_id ?? '支払い方法を選択';
     dateTime = DateTime.now();
     dateFormat = DateFormat("yyyy年MM月dd日").format(expense_datetime);
+
+
   }
+
 
   void _onChangedCategory(String? value) {
     setState(() {
@@ -265,6 +272,23 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
                         ),
                       ),
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                       //ここから収入
                             Container(
                               child: Column(
@@ -272,15 +296,21 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
                                   const SizedBox(height: 50,),
                                   Container(
                                     width:280,
+                                    decoration: const BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(color: Colors.black)
+                                        )
+                                    ),
                                     child: Center(
-                                        child: TextFormField(
-                                          initialValue: '¥0', style: const TextStyle(fontSize: 35),
+                                      child: TextFormField(
+                                          initialValue: expense_amount_including_tax.toString(), style: const TextStyle(fontSize: 35),
                                           textAlign: TextAlign.right,
                                           keyboardType: TextInputType.number,
-                                        ),
+                                          onChanged: (change_money) => setState(() => expense_amount_including_tax = int.parse(change_money))
+                                      ),
                                     ),
                                   ),
-                                  const SizedBox(height: 10,),
+                                  const SizedBox(height: 20,),
                                   Container(
                                     width: 320,
                                     decoration: const BoxDecoration(
@@ -313,60 +343,61 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
                                   ),
                                   const SizedBox(height: 10,),
                                   Container(
-                                    width: 240,
+                                    width: 220,
                                     decoration: const BoxDecoration(
-                                      border: const Border(
-                                        bottom: const BorderSide(),
+                                      border: Border(
+                                        bottom: BorderSide(),
                                       ),
                                     ),
                                     child: Row(
                                       children: <Widget>[
-                                        DropdownButton(
-                                          items: [
-                                            const DropdownMenuItem(child: Text('収入カテゴリの選択', style: TextStyle(fontSize: 24),),
-                                              value: '収入カテゴリの選択',
-                                            ),
-                                            const DropdownMenuItem(child: Text('aaa',style: TextStyle(fontSize: 24),),
-                                              value: 'aaa',
-                                            ),
-                                          ] ,
-                                          onChanged: (String? value) {
-                                            setState(() {
-                                              incomeItem = value;
-                                            });
-                                          },
-                                          value: incomeItem,
-                                        ),
+                                        Container(
+                                          width: 220,
+                                          height: 50,
+                                          child: DropdownButton<String>(
+                                            items: _category.map<DropdownMenuItem<String>>((String value) {
+                                              return DropdownMenuItem(
+                                                value: value,
+                                                child: Text(value),
+                                              );
+                                            }).toList(),
+                                            value: _category_selected,
+                                            onChanged: _onChangedCategory,
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(height: 20,),
+                                  const SizedBox(height: 10,),
                                   Container(
-                                    child: Align(
-                                      alignment: const Alignment(-0.7,0),
-                                      child: const Text('メモ', style: TextStyle(fontSize: 25),),
+                                    child: const Align(
+                                      alignment: Alignment(-0.7,0),
+                                      child: Text('メモ', style: TextStyle(fontSize: 25),),
                                     ),
                                   ),
                                   Container(
                                     width: 280,
-                                        child: TextFormField(
-                                          decoration: const InputDecoration(
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(width: 2),
-                                              ),
-                                              contentPadding: EdgeInsets.symmetric(
-                                                vertical: 10,
-                                              )
+                                    child: TextFormField(
+                                      initialValue: expense_memo,
+                                      decoration: const InputDecoration(
+                                          hintText: 'メモを入力してください',
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(width: 2),
                                           ),
-                                        ),
+                                          contentPadding: EdgeInsets.symmetric(
+                                            vertical: 10,
+                                          )
+                                      ),
+                                      onChanged: (expense_change_memo) => setState(() => this.expense_memo = expense_change_memo),
+                                    ),
                                   ),
-                                  const SizedBox(height: 30,),
+                                  const SizedBox(height: 20,),
                                   Container(
                                     height: 50,
                                     width: 100,
                                     child: ElevatedButton(
                                       child: const Text('登録', style: TextStyle(fontSize: 20),),
-                                      onPressed: createOrUpdateExpense,
+                                      onPressed: createOrUpdateIncome,
                                     ),
                                   ),
                                 ],
@@ -382,6 +413,7 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
     );
   }
 
+  //Expense
   void createOrUpdateExpense() async {
     final isUpdate = (widget.expenses != null);     // 画面が空でなかったら
 
@@ -404,15 +436,13 @@ class _ExpenseDetailEditState extends State<ExpenseDetailEdit> {
       expense_memo: expense_memo,
       expense_updated_at: expense_updated_at,
     );
-
     await ExpenseDbHelper.expenseinstance.expenseupdate(expense);        // catの内容で更新する
   }
-
-  int idCount = 0;
 
   // 追加処理の呼び出し
   Future createExpense() async {
     final expense = Expenses(                           // 入力された内容をcatにセット
+      expense_id: expense_id,
       expense_category_code: expense_category_code,
       expense_genre_code: expense_genre_code,
       payment_method_id: payment_method_id,

@@ -1,9 +1,9 @@
-import 'package:e_i_register/model/expense_db_helper.dart';
+import 'package:e_i_register/model/expense_model/expense_db_helper.dart';
 import 'package:intl/intl.dart';
 
 // Expensesテーブルの定義
 class Expenses {
-  int? expense_id;
+  int expense_id;
   String expense_category_code;
   String expense_genre_code;
   String payment_method_id;
@@ -16,7 +16,7 @@ class Expenses {
   DateTime expense_updated_at;
 
   Expenses({
-    this.expense_id,
+    required this.expense_id,
     required this.expense_category_code,
     required this.expense_genre_code,
     required this.payment_method_id,

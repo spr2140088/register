@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../model/expense_db_helper.dart';
-import '../model/expenses.dart';
+import '../../model/expense_model/expense_db_helper.dart';
+import '../../model/expense_model/expenses.dart';
 import 'expense_detail_edit.dart';
 
 // catsテーブルの中の1件のデータに対する操作を行うクラス
