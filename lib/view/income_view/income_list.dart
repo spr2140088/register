@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../model/income_model/income_db_helper.dart';
 import '../../model/income_model/incomes.dart';
-import '../expense_view/expense_detail.dart';
 import '../expense_view/expense_detail_edit.dart';
+import 'income_detail.dart';
 
 class IncomeList extends StatefulWidget {
   const IncomeList({Key? key}) : super(key: key);
@@ -58,7 +58,7 @@ class _IncomeListPageState extends State<IncomeList> {
                 onTap: () async {                     // cardをtapしたときの処理を設定
                   await Navigator.of(context).push(   // ページ遷移をNavigatorで設定
                     MaterialPageRoute(
-                      builder: (context) => ExpenseDetail(id: income.income_id!),   // cardのデータの詳細を表示するcat_detail.dartへ遷移
+                      builder: (context) => IncomeDetail(id: income.income_id!),   // cardのデータの詳細を表示するcat_detail.dartへ遷移
                     ),
                   );
                   getIncomesList();    // データが更新されているかもしれないので、catsテーブル全件読み直し

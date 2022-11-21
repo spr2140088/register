@@ -1,4 +1,3 @@
-
 // Expensesテーブルの定義
 import 'package:intl/intl.dart';
 

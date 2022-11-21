@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../model/expense_model/expense_db_helper.dart';
 import '../../model/expense_model/expenses.dart';
+import 'expense_detail.dart';
+import 'expense_detail_edit.dart';
 
 // catテーブルの内容全件を一覧表示するクラス
 class ExpenseList extends StatefulWidget {
@@ -37,8 +39,8 @@ class _ExpenseListPageState extends State<ExpenseList> {
       body: isLoading                               //「読み込み中」だったら「グルグル」が表示される
           ? const Center(
         child: CircularProgressIndicator(),   // これが「グルグル」の処理
-      )
-          : SizedBox(
+      ):
+      SizedBox(
         child: ListView.builder(              // 取得したcatsテーブル全件をリスト表示する
           itemCount: expenseList.length,          // 取得したデータの件数を取得
           itemBuilder: (BuildContext context, int index) {
@@ -67,6 +69,7 @@ class _ExpenseListPageState extends State<ExpenseList> {
           },
         ),
       ),
+
       floatingActionButton: FloatingActionButton(                   // ＋ボタンを下に表示する
         child: const Icon(Icons.add),                               // ボタンの形を指定
         onPressed: () async {                                       // ＋ボタンを押したときの処理を設定

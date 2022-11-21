@@ -68,7 +68,7 @@ class IncomeDbHelper {
     return incomesData.map((json) => Incomes.fromJson(json)).toList();    // 読み込んだテーブルデータをListにパースしてreturn
   }
 
-  Future<Incomes> expenseData(int id) async {
+  Future<Incomes> incomeData(int id) async {
     final db = await incomeinstance.incomedatabase;
     var income = [];
     income = await db.query(
