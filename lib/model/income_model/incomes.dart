@@ -5,7 +5,7 @@ import 'income_db_helper.dart';
 
 class Incomes {
   int income_id;
-  String income_category_code;
+  int income_category_code;
   int income_money;
   DateTime income_day;
   String income_memo;
@@ -25,7 +25,7 @@ class Incomes {
 // 更新時のデータを入力項目からコピーする処理
   Incomes copy({
     int? income_id,
-    String? income_category_code,
+    int? income_category_code,
     int? income_money,
     DateTime? income_day,
     String? income_memo,
@@ -44,7 +44,7 @@ class Incomes {
 
   static Incomes fromJson(Map<String, Object?> json) => Incomes(
     income_id: json[columnIncomeId] as int,
-    income_category_code: json[columnIncomeCategoryCode] as String,
+    income_category_code: json[columnIncomeCategoryCode] as int,
     income_money: json[columnIncomeMoney] as int,
     income_day: DateTime.parse(json[columnIncomeDay] as String),
     income_memo: json[columnIncomeMemo] as String,

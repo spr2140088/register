@@ -51,12 +51,13 @@ class IncomeDbHelper {
     await database.execute('''
       CREATE TABLE incomes(
         _income_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        income_category_code TEXT,
+        income_category_code INTEGER,
         income_money INTEGER,
         income_day INTEGER,
         income_memo TEXT,
         income_created_at TEXT,
-        income_updated_at TEXT
+        income_updated_at TEXT,
+        foreign key (income_category_code) references incomecategories(income_category_code)
       )
     ''');
   }

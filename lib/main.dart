@@ -1,4 +1,5 @@
 import 'package:e_i_register/view/expense_view/expense_list.dart';
+import 'package:e_i_register/view/income_view/income_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

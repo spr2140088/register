@@ -4,9 +4,9 @@ import 'package:intl/intl.dart';
 // Expensesテーブルの定義
 class Expenses {
   int expense_id;
-  String expense_category_code;
+  int expense_category_code;
   String expense_genre_code;
-  String payment_method_id;
+  int payment_method_id;
   int expense_total_money;
   int expense_consumption_tax;
   int expense_amount_including_tax;
@@ -32,10 +32,10 @@ class Expenses {
 // 更新時のデータを入力項目からコピーする処理
   Expenses copy({
     int? expense_id,
-    String? expense_category_code,
+    int? expense_category_code,
     String? expense_genre_code,
-    String? payment_method_id,
-    int? expnse_total_money,
+    int? payment_method_id,
+    int? expense_total_money,
     int? expense_consumption_tax,
     int? expense_amount_including_tax,
     DateTime? expense_datetime,
@@ -59,9 +59,9 @@ class Expenses {
 
   static Expenses fromJson(Map<String, Object?> json) => Expenses(
     expense_id: json[columnExpenseId] as int,
-    expense_category_code: json[columnExpenseCategoryCode] as String,
+    expense_category_code: json[columnExpenseCategoryCode] as int,
     expense_genre_code: json[columnExpenseGenreCode] as String,
-    payment_method_id: json[columnPaymentMethodId] as String,
+    payment_method_id: json[columnPaymentMethodId] as int,
     expense_total_money: json[columnExpenseTotalMoney] as int,
     expense_consumption_tax: json[columnExpenseConsumptionTax] as int,
     expense_amount_including_tax: json[columnExpenseAmountIncludingTax] as int,

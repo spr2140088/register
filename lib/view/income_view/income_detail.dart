@@ -116,7 +116,7 @@ class _IncomeDetailState extends State<IncomeDetail> {
                     flex: dataExpandedFlex,
                     child: Container(                                      // catsテーブルのbirthdayの表示を設定
                       padding: const EdgeInsets.all(5.0),
-                      child: Text(incomes.income_category_code),
+                      child: Text(incomes.income_category_code.toString()),
                     ),
                   )
                 ],),

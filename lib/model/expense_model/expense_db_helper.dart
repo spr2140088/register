@@ -57,9 +57,9 @@ class ExpenseDbHelper {
     await database.execute('''
       CREATE TABLE expenses(
         _expense_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        expense_category_code TEXT,
+        expense_category_code INTEGER,
         expense_genre_code TEXT,
-        payment_method_id TEXT,
+        payment_method_id INTEGER,
         expense_total_money INTEGER,
         expense_consumption_tax INTEGER,
         expense_amount_including_tax INTEGER,

@@ -115,7 +115,7 @@ class _ExpenseDetailState extends State<ExpenseDetail> {
                     flex: dataExpandedFlex,
                     child: Container(                                      // catsテーブルのbirthdayの表示を設定
                       padding: const EdgeInsets.all(5.0),
-                      child: Text(expenses.expense_category_code),
+                      child: Text(expenses.expense_category_code.toString()),
                     ),
                   )
                 ],),
@@ -145,7 +145,7 @@ class _ExpenseDetailState extends State<ExpenseDetail> {
                     flex: dataExpandedFlex,
                     child: Container(                                      // catsテーブルのmemoの表示を設定
                       padding: const EdgeInsets.all(5.0),
-                      child: Text(expenses.payment_method_id),
+                      child: Text(expenses.payment_method_id.toString()),
                     ),
                   ),
                 ],),
